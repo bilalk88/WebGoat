@@ -28,8 +28,8 @@ whoami
 pwd
 echo $PATH
 docker build --no-cache -t webgoat/webgoat-8.0:latest .
-docker tag webgoat/webgoat-8.0:latest registry.mycompany.com/webgoat/webgoat-8.0:latest
-docker push registry.mycompany.com/webgoat/webgoat-8.0:latest
+docker tag webgoat/webgoat-8.0:latest hub.docker.com/webgoat/webgoat-8.0:latest
+docker push hub.docker.com/repository/docker/bilalk88/webgoat/webgoat-8.0:latest
 '''
           }
         }
@@ -43,11 +43,6 @@ docker push registry.mycompany.com/webgoat/webgoat-8.0:latest
             anchore 'anchore_images'
           }
         }
-        stage('IQ-Scan Application') {
-          steps {
-            sh 'docker save webgoat/webgoat-8.0 -o $WORKSPACE/webgoat.tar'
-            nexusPolicyEvaluation(iqStage: 'stage-release', iqApplication: 'webgoat8', iqScanPatterns: [[scanPattern: 'webgoat.tar']])
-          }
         }
       }
     }
@@ -57,8 +52,8 @@ docker push registry.mycompany.com/webgoat/webgoat-8.0:latest
       }
       steps {
         sh '''
-                    docker tag webgoat/webgoat-8.0 mycompany.com:5000/webgoat/webgoat-8.0:8.0
-                    docker push mycompany.com:5000/webgoat/webgoat-8.0
+                    docker tag webgoat/webgoat-8.0 hub.docker.com/webgoat/webgoat-8.0:8.0
+                    docker push hub.docker.com/repository/docker/bilalk88/webgoat/webgoat-8.0
                 '''
       }
     }
