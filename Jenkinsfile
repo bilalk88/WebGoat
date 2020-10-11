@@ -8,12 +8,6 @@ pipeline {
                     mvn -B  install -DskipTests'''
       }
     }
-    stage('Scan App - Build Container') {
-      parallel {
-        stage('IQ-BOM') {
-          steps {
-            nexusPolicyEvaluation(iqApplication: 'webgoat8', iqStage: 'build', iqScanPatterns: [[scanPattern: '']])
-          }
         }
         stage('Static Analysis') {
           steps {
