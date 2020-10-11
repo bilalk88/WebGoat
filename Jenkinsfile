@@ -8,7 +8,8 @@ pipeline {
                     mvn -B  install -DskipTests'''
       }
     }
-        }
+    stage('Scan App - Build Container') {
+      parallel {
         stage('Static Analysis') {
           steps {
             echo '...run SonarQube or other SAST tools here'
@@ -23,10 +24,11 @@ pwd
 echo $PATH
 docker build --no-cache -t webgoat/webgoat-8.0:latest .
 docker tag webgoat/webgoat-8.0:latest hub.docker.com/webgoat/webgoat-8.0:latest
-docker push hub.docker.com/repository/docker/bilalk88/webgoat/webgoat-8.0:latest
+docker push hub.docker.com/webgoat/webgoat-8.0:latest
 '''
           }
         }
+      }
     }
     stage('Test Container') {
       parallel {
@@ -35,7 +37,6 @@ docker push hub.docker.com/repository/docker/bilalk88/webgoat/webgoat-8.0:latest
             sh 'echo "nexus:5000/webgoat/webgoat-8.0 ${WORKSPACE}/webgoat-server/Dockerfile" > anchore_images'
             anchore 'anchore_images'
           }
-        }
         }
       }
     }
@@ -46,7 +47,7 @@ docker push hub.docker.com/repository/docker/bilalk88/webgoat/webgoat-8.0:latest
       steps {
         sh '''
                     docker tag webgoat/webgoat-8.0 hub.docker.com/webgoat/webgoat-8.0:8.0
-                    docker push hub.docker.com/repository/docker/bilalk88/webgoat/webgoat-8.0
+                    docker push hub.docker.com/webgoat/webgoat-8.0
                 '''
       }
     }
