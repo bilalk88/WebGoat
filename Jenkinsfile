@@ -64,7 +64,6 @@ docker push registry.mycompany.com/webgoat/webgoat-8.0:latest
     }
   }
   tools {
-    maven 'M3'
-    jdk 'JDK8'
+    maven 'Maven'
   }
 }
