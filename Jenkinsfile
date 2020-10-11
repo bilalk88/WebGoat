@@ -27,7 +27,6 @@ docker push hub.docker.com/repository/docker/bilalk88/webgoat/webgoat-8.0:latest
 '''
           }
         }
-      }
     }
     stage('Test Container') {
       parallel {
