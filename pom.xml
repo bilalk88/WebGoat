@@ -146,6 +146,11 @@
     <wiremock.version>2.27.2</wiremock.version>
     <xml-resolver.version>1.2</xml-resolver.version>
     <xstream.version>1.4.5</xstream.version>
+    <activemq-broker.version>5.15.8</activemq-broker.version>
+
+    <!-- Added VULN PKG-->
+    <jackson.version>2.7.9.3</jackson.version>
+
     <!-- do not update necessary for lesson -->
     <zxcvbn.version>1.7.0</zxcvbn.version>
   </properties>
@@ -185,6 +190,20 @@
         <artifactId>xstream</artifactId>
         <version>${xstream.version}</version>
       </dependency>
+
+      <!-- ADDED VULN PKG -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.zookeeper</groupId>
+        <artifactId>zookeeper</artifactId>
+        <version>3.6.4</version>
+		</dependency>
+
       <dependency>
         <groupId>cglib</groupId>
         <artifactId>cglib-nodep</artifactId>
@@ -334,6 +353,13 @@
       <groupId>com.thoughtworks.xstream</groupId>
       <artifactId>xstream</artifactId>
     </dependency>
+
+<!-- ADDED VULN PKG -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+      </dependency>
+
     <dependency>
       <groupId>cglib</groupId>
       <artifactId>cglib-nodep</artifactId>
